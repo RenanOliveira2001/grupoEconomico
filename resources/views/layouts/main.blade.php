@@ -21,22 +21,22 @@
         <nav class="navbar navbar-expand-lg navbar-light">
           <div class="collapse navbar-collapse" id="navbar">
             <a href="/" class="navbar-brand">
-              <img src="/img/logoifsp.png" alt="IFSP">
+              <img src="/img/grpEconomico.jpeg" alt="Grupos Econômicos">
             </a>
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a href="/" class="nav-link">Disciplinas</a>
-              </li>
-              <li class="nav-item">
-                <a href="/dashboard" class="nav-link">Disciplinas Cadastradas</a>
-              </li>
-              <li class="nav-item">
-                <a href="/disciplinas/cadastro" class="nav-link">Cadastrar Disciplinas</a>
+                <a href="/" class="nav-link">Página Inicial</a>
               </li>
               @auth
               <li class="nav-item">
                 <form action="/logout" method="POST">
                   @csrf
+                  <li class="nav-item">
+                    <a href="/dashboard" class="nav-link">Disciplinas Cadastradas</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/disciplinas/cadastro" class="nav-link">Cadastrar Disciplinas</a>
+                  </li>
                   <a href="/logout" 
                     class="nav-link" 
                     onclick="event.preventDefault();
