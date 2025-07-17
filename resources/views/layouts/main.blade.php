@@ -15,6 +15,8 @@
         <!-- CSS da aplicação -->
         <link rel="stylesheet" href="/css/styles.css">
         <script src="/js/scripts.js"></script>
+
+        @livewireStyles
     </head>
     <body>
       <header>
@@ -72,5 +74,6 @@
         <p>Renan Oliveira &copy; 2025</p>
       </footer>
       <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+      @livewireScripts
     </body>
 </html>

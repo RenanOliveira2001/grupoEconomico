@@ -3,21 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-
-class GrupoEconomico extends Model
+class Bandeira extends Model
 {
-    protected $table = 'grupos_economicos';
+    protected $table = 'bandeiras';
 
     protected $fillable = ['nome','dt_criacao','ultima_atualizacao'];
 
     protected $date_format = 'd/m/Y H:i:s';
+
     const CREATED_AT = 'dt_criacao';
 
     const UPDATED_AT = 'ultima_atualizacao';
-    
+
     public function bandeira(){
-        return $this->hasMany(Bandeira::class);
+        return $this->belongsTo(GrupoEconomico::class);
     }
 }

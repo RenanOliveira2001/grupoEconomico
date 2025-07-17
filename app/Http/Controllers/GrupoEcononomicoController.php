@@ -30,21 +30,26 @@ class GrupoEcononomicoController extends Controller
 
             return redirect('/')->with('msg', 'Grupo Cadastrado com sucesso!');
         } catch(Exception $e){
-            echo('Erro ao gravar o Grupo Econômico: '. $e->getMessage());
+            return redirect()->back()->with('error', 'Erro ao cadastrar o grupo econômico: ' . $e->getMessage());
         }
     }
 
     public function edit($id){
-        $grpEconomico = GrupoEconomico::findOrFail($id);
+        $grupoEconomico = GrupoEconomico::findOrFail($id);
 
-        return view('grupo_economico.edit', ['grpEconomico' => $grpEconomico]);
+        return view('grupo_economico.edit', ['grpEconomico' => $grupoEconomico]);
     }
 
     public function update(Request $request){
-        $data = $request->all();
+        try{
+            GrupoEconomico::where('id', '=',$request)->update([
+                'nome' => $request->nome,
+                'ultima_atualizacao' => now()
+            ]);
 
-        GrupoEconomico::findOrFail($request->id)->update($data);
-
-        return redirect('/')->with('msg', 'Grupo Econômico alterado com Sucesso');
+            return redirect('/')->with('msg', 'Grupo Econômico alterado com Sucesso');
+        } catch(Exception $e) {
+            return redirect()->back()->with('error', 'Erro ao atualizar o grupo econômico: ' . $e->getMessage());
+        }
     }
 }
