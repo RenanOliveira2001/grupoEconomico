@@ -40,4 +40,21 @@ class UnidadeController extends Controller
 
         return view('unidade.edit',['unidade' => $unidade, 'bandeira' => $bandeira]);
     }
+
+    public function update(Request $request){
+        try {
+            Unidade::where('id','=',$request->id)
+            ->update([
+                'razao_social' => $request->razao_social,
+                'nome_fantasia' => $request->nome_fantasia,
+                'bandeira' => $request->bandeira,
+                'cnpj' => $request->cnpj,
+                'ultima_atualizacao' => now()
+            ]);
+
+            return redirect()->to('/')->with('msg','Unidade atualizada com sucesso');
+        } catch(Exception $e){
+            return redirect()->back()->with('msg','Erro ao atualizar unidade: '.$e->getMessage());
+        }
+    }
 }

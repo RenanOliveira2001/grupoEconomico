@@ -4,9 +4,10 @@
 
 @section('content')
     <div id="event-create-container" class="col-md-6 offset-md-3">
-        <h1>Cadastro de Nova Unidade</h1>
+        <h1>Atualização da Unidade {{ $unidade->nome_fantasia }}</h1>
         <form action="/unidade/update/{{ $unidade->id }}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <div class = "form-group" enctype="multipart/form-data">
                 <label for="nome">Razão Social</label>
                 <input type="text" name="razao_social" id="razao_social" class="form-control" required value="{{ $unidade->razao_social }}">
