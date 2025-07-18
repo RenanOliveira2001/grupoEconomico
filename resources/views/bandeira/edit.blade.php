@@ -5,7 +5,7 @@
 @section('content')
     <div id="event-create-container" class="col-md-6 offset-md-3">
         <h1>Cadastro de Nova Bandeira</h1>
-        <form action="/bandeira/store" method="POST" enctype="multipart/form-data">
+        <form action="/bandeira/update/{{ $bandeira->id }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class = "form-group" enctype="multipart/form-data">
@@ -15,7 +15,6 @@
             <div class = "form-group" enctype="multipart/form-data">
                 <label for="grupo_economico" >Grupo Econômico: </label>
                 <select name="grupo_economico" id="grupo_economico">
-                    <option value="">Selecione</option>
                     @forelse ($grupoEconomico as $grpEconomico)
                         <option value="{{ $bandeira->grupo_economico }}">{{ $grpEconomico->nome }}</option>
                     @empty

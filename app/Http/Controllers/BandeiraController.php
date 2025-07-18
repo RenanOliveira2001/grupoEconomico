@@ -26,9 +26,9 @@ class BandeiraController extends Controller
 
             $bandeira->save();
 
-            redirect()->to('/')->with('msg','Bandeira cadastrada com sucesso');
+            return redirect()->to('/')->with('msg','Bandeira cadastrada com sucesso');
         } catch(Exception $e){
-            redirect()->back()->with('msg',$e->getMessage());
+            return redirect()->back()->with('msg',$e->getMessage());
         }
     }
 
@@ -43,9 +43,17 @@ class BandeiraController extends Controller
 
     public function update(Request $request){
         try {
+            Bandeira::where('id','=',$request->id)
+            ->update([
+                'nome' => $request->nome,
+                'grupo_economico' => $request->grupo_economico,
+                'ultima_atualizacao' => now()
+            ]);
+
+            return redirect()->to('/')->with('msg','Bandeira atualizada com sucesso');
 
         } catch(Exception $e){
-
+            return redirect()->back()->with('msg',$e->getMessage());
         }
     }
 }

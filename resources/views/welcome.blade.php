@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Gestão de Grupos Econômicos')
+@section('title', 'Gestão Inteligente')
 
 @section('content')
 <div id="welcome-container" class="col-md-12">

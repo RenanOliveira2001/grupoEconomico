@@ -19,4 +19,8 @@ class Bandeira extends Model
     public function bandeira(){
         return $this->belongsTo(GrupoEconomico::class);
     }
+
+    public function unidade(){
+        return $this->hasMany(Unidade::class);
+    }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BandeiraController;
 use App\Http\Controllers\GrupoEcononomicoController;
+use App\Http\Controllers\UnidadeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -16,3 +17,6 @@ Route::put('/grupo_economico/update/{id}',[GrupoEcononomicoController::class, 'u
 Route::get('/bandeira/create',[BandeiraController::class,'create']);
 Route::post('/bandeira/store',[BandeiraController::class, 'store']);
 Route::get('/bandeira/edit/{id}',[BandeiraController::class, 'edit']);
+Route::put('/bandeira/update/{id}',[BandeiraController::class, 'update']);
+Route::get('/unidade/create',[UnidadeController::class,'create']);
+Route::post('/unidade/store',[UnidadeController::class, 'store']);
