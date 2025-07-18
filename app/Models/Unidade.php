@@ -19,4 +19,7 @@ class Unidade extends Model
     public function bandeira(){
         return $this->belongsTo(Bandeira::class);
     }
+    public function unidade(){
+        return $this->hasMany(Colaborador::class);
+    }
 }

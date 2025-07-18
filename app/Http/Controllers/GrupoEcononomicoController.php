@@ -10,7 +10,9 @@ use PHPUnit\Framework\TestStatus\Notice;
 class GrupoEcononomicoController extends Controller
 {
     public function index(){
-        return view('grupo_economico.index');
+        $grupoEconomico = GrupoEconomico::orderBy('id')->get();
+
+        return view('grupo_economico.index', ['grupoEconomico' => $grupoEconomico]);
     }
 
     public function create(){
@@ -49,7 +51,7 @@ class GrupoEcononomicoController extends Controller
 
             return redirect('/')->with('msg', 'Grupo Econômico alterado com Sucesso');
         } catch(Exception $e) {
-            return redirect()->back()->with('error', 'Erro ao atualizar o grupo econômico: ' . $e->getMessage());
+            return redirect()->back()->with('msg', 'Erro ao atualizar o grupo econômico: ' . $e->getMessage());
         }
     }
 }
