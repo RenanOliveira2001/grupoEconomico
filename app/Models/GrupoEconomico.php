@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class GrupoEconomico extends Model
 {
-    protected $table = 'grupos_economicos';
+    protected $table = 'grupo_economicos';
 
     protected $fillable = ['nome','dt_criacao','ultima_atualizacao'];
 

@@ -16,7 +16,10 @@ return new class extends Migration
             $table->text('nome');
             $table->string('email')->unique();
             $table->text('CPF');
-            $table->foreignId('unidade');
+            $table->foreignId('unidade')
+                    ->constrained()
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
             $table->date('dt_criacao');
             $table->dateTime('ultima_atualizacao');
         });

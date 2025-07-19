@@ -6,9 +6,26 @@ use App\Models\Bandeira;
 use App\Models\GrupoEconomico;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BandeiraController extends Controller
 {
+    public function index(){
+        $bandeira = Bandeira::orderBy('id','asc')->get();
+
+        $selGrpEconomico = DB::select('SELECT A.NOME FROM GRUPO_ECONOMICOS A,
+                                    BANDEIRAS B
+                                    WHERE A.ID = B.GRUPO_ECONOMICO');
+        
+        if($selGrpEconomico != []){
+            $grupoEconomico = $selGrpEconomico[0]->NOME;
+        } else {
+            $grupoEconomico = '';
+        }
+
+        return view('bandeira.index',['bandeira' => $bandeira,'grupoEconomico' => $grupoEconomico]);
+    }
+
     public function create(){
         $grupoEconomico = GrupoEconomico::orderBy('id','asc')->get();
 
@@ -26,7 +43,7 @@ class BandeiraController extends Controller
 
             $bandeira->save();
 
-            return redirect()->to('/')->with('msg','Bandeira cadastrada com sucesso');
+            return redirect()->to('/bandeira')->with('msg','Bandeira cadastrada com sucesso');
         } catch(Exception $e){
             return redirect()->back()->with('msg',$e->getMessage());
         }
@@ -35,8 +52,6 @@ class BandeiraController extends Controller
     public function edit($id){
         $bandeira = Bandeira::findOrFail($id);
         $grupoEconomico = GrupoEconomico::orderBy('id','asc')->get();
-
-        //dd($bandeira);
 
         return view('bandeira.edit',['bandeira' => $bandeira,'grupoEconomico' => $grupoEconomico]);
     }
@@ -50,8 +65,18 @@ class BandeiraController extends Controller
                 'ultima_atualizacao' => now()
             ]);
 
-            return redirect()->to('/')->with('msg','Bandeira atualizada com sucesso');
+            return redirect()->to('/bandeira')->with('msg','Bandeira atualizada com sucesso');
 
+        } catch(Exception $e){
+            return redirect()->back()->with('msg',$e->getMessage());
+        }
+    }
+
+    public function delete($id){
+        try{
+            Bandeira::where('id','=',$id)->delete();
+
+            return redirect('/bandeira')->with('msg', 'Bandeira excluída com sucesso');
         } catch(Exception $e){
             return redirect()->back()->with('msg',$e->getMessage());
         }

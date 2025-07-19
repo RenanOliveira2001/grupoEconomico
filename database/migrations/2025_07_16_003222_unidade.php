@@ -16,7 +16,10 @@ return new class extends Migration
             $table->text('nome_fantasia');
             $table->text('razao_social');
             $table->text('cnpj');
-            $table->foreignId('bandeira');
+            $table->foreignId('bandeira')
+                    ->constrained()
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
             $table->date('dt_criacao');
             $table->dateTime('ultima_atualizacao');
         });

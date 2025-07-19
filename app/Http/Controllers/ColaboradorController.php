@@ -6,9 +6,26 @@ use App\Models\Colaborador;
 use App\Models\Unidade;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ColaboradorController extends Controller
 {
+    public function index(){
+        $colaborador = Colaborador::orderBy('id','asc')->get();
+
+        $selUnidade = DB::select('SELECT A.NOME_FANTASIA FROM UNIDADES A,
+                                    COLABORADORES B
+                                    WHERE A.ID = B.UNIDADE');
+        
+        if($selUnidade != []){
+            $unidade = $selUnidade[0]->NOME_FANTASIA;
+        } else {
+            $unidade = '';
+        }
+
+        return view('colaborador.index',['colaborador' => $colaborador,'unidade' => $unidade]);
+    }
+
     public function create(){
         $unidade = Unidade::orderBy('id')->get();
 
@@ -28,7 +45,7 @@ class ColaboradorController extends Controller
 
             $colaborador->save();
 
-            return redirect()->to('/')->with('msg','Colaborador cadastrado com sucesso');
+            return redirect()->to('/colaborador')->with('msg','Colaborador cadastrado com sucesso');
         } catch(Exception $e){
             return redirect()->back()->with('msg','Erro ao cadastrar colaborador: '.$e->getMessage());
         }
@@ -55,6 +72,16 @@ class ColaboradorController extends Controller
             return redirect()->to('/')->with('msg','Unidade atualizada com sucesso');
         } catch(Exception $e){
             return redirect()->back()->with('msg','Erro ao atualizar unidade: '.$e->getMessage());
+        }
+    }
+
+    public function delete($id){
+        try{
+            Colaborador::where('id','=',$id)->delete();
+
+            return redirect('/colaborador')->with('msg', 'Colaborador excluído com sucesso');
+        } catch(Exception $e){
+            return redirect()->back()->with('msg',$e->getMessage());
         }
     }
 }

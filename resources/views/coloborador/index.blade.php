@@ -1,0 +1,42 @@
+@extends('layouts.main')
+
+@section('title', 'Grupos Econômicos')
+
+@section('content')
+    <div id="event-create-container" class="col-md-8 offset-md-3">
+        <a href="/unidade/create" id="btnCreate" type="submit" class="btn btn-outline-success">Cadastrar Nova Unidade</a>
+        @forelse ($unidade as $un)
+            <table border="1" id="tblUnidade">
+                <tr>
+                    <th>Id Colaborador</th>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>CPF</th>
+                    <th>Unidade</th>
+                    <th>Data de criação</th>
+                    <th>Última Atualização</th>
+                    <th>Ações</th>
+                </tr>
+                    <tr>
+                        <td>{{$un->id}}</td>
+                        <td>{{$un->razao_social}}</td>
+                        <td>{{$un->nome_fantasia}}</td>
+                        <td>{{$un->cnpj}}</td>
+                        <td>{{$bandeira}}</td>
+                        <td>{{$un->dt_criacao}}</td>
+                        <td>{{$un->ultima_atualizacao}}</td>
+                        <td>
+                            <a href="/unidade/edit/{{ $un->id }}" id="btnEdit" type="submit" class="btn btn-info edit-btn"><ion-icon name="create-outline"></ion-icon></a>
+                            <form action="/unidade/delete/{{ $un->id }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger delete-btn"><ion-icon name="trash-outline"></ion-icon></button>
+                            </form>
+                        </td>
+                    </tr>
+            </table>
+        @empty
+            Não há nenhuma Unidade cadastrada
+        @endforelse
+    </div>
+@endsection

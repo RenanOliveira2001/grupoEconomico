@@ -30,7 +30,7 @@ class GrupoEcononomicoController extends Controller
 
             $grupo_economico->save();
 
-            return redirect('/')->with('msg', 'Grupo Cadastrado com sucesso!');
+            return redirect('/grupo_economico')->with('msg', 'Grupo Cadastrado com sucesso!');
         } catch(Exception $e){
             return redirect()->back()->with('error', 'Erro ao cadastrar o grupo econômico: ' . $e->getMessage());
         }
@@ -44,14 +44,24 @@ class GrupoEcononomicoController extends Controller
 
     public function update(Request $request){
         try{
-            GrupoEconomico::where('id', '=',$request)->update([
+            GrupoEconomico::where('id', '=',$request->id)->update([
                 'nome' => $request->nome,
                 'ultima_atualizacao' => now()
             ]);
 
-            return redirect('/')->with('msg', 'Grupo Econômico alterado com Sucesso');
+            return redirect('/grupo_economico')->with('msg', 'Grupo Econômico alterado com Sucesso');
         } catch(Exception $e) {
             return redirect()->back()->with('msg', 'Erro ao atualizar o grupo econômico: ' . $e->getMessage());
+        }
+    }
+
+    public function delete($id){
+        try {
+            GrupoEconomico::where('id','=',$id)->delete();
+
+            return redirect('/grupo_economico')->with('msg', 'Grupo Econômico excluído com sucesso com Sucesso');
+        } catch (Exception $e){
+            return redirect()->back()->with('msg', 'Erro ao deletar o grupo econômico: ' . $e->getMessage());
         }
     }
 }

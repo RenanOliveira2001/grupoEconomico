@@ -13,7 +13,7 @@
                 <input type="text" name="nome" id="nome" class="form-control" value="{{ $grpEconomico->nome }}" required>
             </div>
             <button id="btnSave" type="submit" class="btn btn-primary">Salvar</button>
-             <a href="/" id="btnSave" type="submit" class="btn btn-danger">Voltar</a>
+             <a href="/grupo_economico" id="btnSave" type="submit" class="btn btn-danger">Voltar</a>
         </form>
     </div>
 @endsection

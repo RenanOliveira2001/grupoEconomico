@@ -14,7 +14,10 @@ return new class extends Migration
         Schema::create('bandeiras', function(Blueprint $table){
             $table->id();
             $table->text('nome');
-            $table->foreignId('grupo_economico');
+            $table->foreignId('grupo_economico')
+                        ->constrained()
+                        ->onUpdate('cascade')
+                        ->onDelete('cascade');
             $table->date('dt_criacao');
             $table->dateTime('ultima_atualizacao');
         });

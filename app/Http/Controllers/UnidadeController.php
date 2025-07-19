@@ -6,9 +6,26 @@ use App\Models\Bandeira;
 use App\Models\Unidade;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UnidadeController extends Controller
 {
+     public function index(){
+        $unidade = Unidade::orderBy('id','asc')->get();
+
+        $selBandeira = DB::select('SELECT A.NOME FROM BANDEIRAS A,
+                                    UNIDADES B
+                                    WHERE A.ID = B.BANDEIRA');
+        
+        if($selBandeira != []){
+            $bandeira = $selBandeira[0]->NOME;
+        } else {
+            $bandeira = '';
+        }
+
+        return view('unidade.index',['unidade' => $unidade,'bandeira' => $bandeira]);
+    }
+
     public function create(){
         $bandeira = Bandeira::orderBy('id')->get();
 
@@ -28,7 +45,7 @@ class UnidadeController extends Controller
 
             $unidade->save();
 
-            return redirect()->to('/')->with('msg','Unidade cadastrada com sucesso');
+            return redirect()->to('/unidade')->with('msg','Unidade cadastrada com sucesso');
         } catch(Exception $e){
             return redirect()->back()->with('msg','Erro ao cadastrar unidade: '.$e->getMessage());
         }
@@ -52,9 +69,19 @@ class UnidadeController extends Controller
                 'ultima_atualizacao' => now()
             ]);
 
-            return redirect()->to('/')->with('msg','Unidade atualizada com sucesso');
+            return redirect()->to('/unidade')->with('msg','Unidade atualizada com sucesso');
         } catch(Exception $e){
             return redirect()->back()->with('msg','Erro ao atualizar unidade: '.$e->getMessage());
+        }
+    }
+
+    public function delete($id){
+        try{
+            Unidade::where('id','=',$id)->delete();
+
+            return redirect('/unidade')->with('msg', 'Unidade excluída com sucesso');
+        } catch(Exception $e){
+            return redirect()->back()->with('msg',$e->getMessage());
         }
     }
 }
