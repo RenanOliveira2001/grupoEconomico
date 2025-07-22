@@ -23,7 +23,7 @@ class GrupoEcononomicoController extends Controller
         try
         {
             $request->validate([
-                'nome' => 'required|unique|max:255',
+                'nome' => 'required|max:255',
             ]);
 
             $grupo_economico = new GrupoEconomico;
@@ -48,6 +48,10 @@ class GrupoEcononomicoController extends Controller
 
     public function update(Request $request){
         try{
+            $request->validate([
+                'nome' => 'required|max:255',
+            ]);
+
             GrupoEconomico::where('id', '=',$request->id)->update([
                 'nome' => $request->nome,
                 'ultima_atualizacao' => now()

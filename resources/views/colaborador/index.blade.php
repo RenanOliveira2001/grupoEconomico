@@ -23,7 +23,7 @@
                         <td>{{$func->CPF}}</td>
                         <td>{{$unidade}}</td>
                         <td>
-                            <a href="/coloborador/edit/{{ $func->id }}" id="btnEdit" type="submit" class="btn btn-info edit-btn"><ion-icon name="create-outline"></ion-icon></a>
+                            <a href="/colaborador/edit/{{ $func->id }}" id="btnEdit" type="submit" class="btn btn-info edit-btn"><ion-icon name="create-outline"></ion-icon></a>
                             <form action="/colaborador/delete/{{ $func->id }}" method="POST">
                                 @csrf
                                 @method('DELETE')

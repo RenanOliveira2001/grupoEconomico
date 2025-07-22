@@ -34,6 +34,12 @@ class BandeiraController extends Controller
 
     public function store(Request $request){
         try {
+
+            $request->validate([
+                'nome' => 'required|max:255',
+                'grupo_economico' => 'required'
+            ]);
+
             $bandeira = new Bandeira;
 
             $bandeira->nome = $request->nome;
@@ -58,6 +64,12 @@ class BandeiraController extends Controller
 
     public function update(Request $request){
         try {
+            
+            $request->validate([
+                'nome' => 'required|max:255',
+                'grupo_economico' => 'required'
+            ]);
+
             Bandeira::where('id','=',$request->id)
             ->update([
                 'nome' => $request->nome,

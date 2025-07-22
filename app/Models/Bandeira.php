@@ -3,12 +3,17 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
+use OwenIt\Auditing\Auditable;
 
-class Bandeira extends Model
+class Bandeira extends Model implements AuditableContract
 {
+
+    use Auditable;
+
     protected $table = 'bandeiras';
 
-    protected $fillable = ['nome','dt_criacao','ultima_atualizacao'];
+    protected $fillable = ['id','nome', 'grupo_economico','dt_criacao','ultima_atualizacao'];
 
     protected $date_format = 'd/m/Y H:i:s';
 
@@ -17,7 +22,7 @@ class Bandeira extends Model
     const UPDATED_AT = 'ultima_atualizacao';
 
     public function bandeira(){
-        return $this->belongsTo(GrupoEconomico::class);
+        return $this->belongsTo(GrupoEconomico::class, 'id');
     }
 
     public function unidade(){

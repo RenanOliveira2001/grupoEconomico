@@ -34,6 +34,13 @@ class UnidadeController extends Controller
 
     public function store(Request $request){
         try {
+            $request->validate([
+                'razao_social' => 'required|max:255',
+                'nome_fantasia' => 'required|max:255',
+                'bandeira' => 'required|max:255',
+                'cnpj' => 'required|max:255'
+            ]);
+
             $unidade = new Unidade;
 
             $unidade->razao_social = $request->razao_social;
@@ -60,6 +67,13 @@ class UnidadeController extends Controller
 
     public function update(Request $request){
         try {
+            $request->validate([
+                'razao_social' => 'required|max:255',
+                'nome_fantasia' => 'required|max:255',
+                'bandeira' => 'required|max:255',
+                'cnpj' => 'required|max:255'
+            ]);
+
             Unidade::where('id','=',$request->id)
             ->update([
                 'razao_social' => $request->razao_social,
