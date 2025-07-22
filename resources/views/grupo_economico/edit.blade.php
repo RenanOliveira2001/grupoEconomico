@@ -4,7 +4,7 @@
 
 @section('content')
     <div id="event-create-container" class="col-md-6 offset-md-3">
-        <h1>Cadastre o Novo Grupo</h1>
+        <h1>Atualizando o Grupo</h1>
         <form action="/grupo_economico/update/{{ $grpEconomico->id }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')

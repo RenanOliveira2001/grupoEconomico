@@ -17,7 +17,7 @@
             </div>
             <div class = "form-group" enctype="multipart/form-data">
                 <label for="nome">CPF</label>
-                <input type="text" name="cpf" id="cpf" class="form-control" required>
+                <input type="text" name="cpf" id="cpf" class="form-control" required x-data x-mask="999.999.999-99">
             </div>
             <div class = "form-group" enctype="multipart/form-data">
                 <label for="unidade" >Unidade: </label>
@@ -31,7 +31,7 @@
                 </select>
             </div>
             <button id="btnSave" type="submit" class="btn btn-primary">Salvar</button>
-            <a href="/" id="btnSave" type="submit" class="btn btn-danger">Voltar</a>
+            <a href="/colaborador" id="btnSave" type="submit" class="btn btn-danger">Voltar</a>
         </form>
     </div>
 @endsection

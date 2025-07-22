@@ -45,9 +45,9 @@ class UnidadeController extends Controller
 
             $unidade->save();
 
-            return redirect()->to('/unidade')->with('msg','Unidade cadastrada com sucesso');
+            return redirect()->to('/unidade')->with('error','Unidade cadastrada com sucesso');
         } catch(Exception $e){
-            return redirect()->back()->with('msg','Erro ao cadastrar unidade: '.$e->getMessage());
+            return redirect()->back()->with('error','Erro ao cadastrar unidade: '.$e->getMessage());
         }
     }
 
@@ -71,7 +71,7 @@ class UnidadeController extends Controller
 
             return redirect()->to('/unidade')->with('msg','Unidade atualizada com sucesso');
         } catch(Exception $e){
-            return redirect()->back()->with('msg','Erro ao atualizar unidade: '.$e->getMessage());
+            return redirect()->back()->with('error','Erro ao atualizar unidade: '.$e->getMessage());
         }
     }
 
@@ -81,7 +81,7 @@ class UnidadeController extends Controller
 
             return redirect('/unidade')->with('msg', 'Unidade excluída com sucesso');
         } catch(Exception $e){
-            return redirect()->back()->with('msg',$e->getMessage());
+            return redirect()->back()->with('error',$e->getMessage());
         }
     }
 }

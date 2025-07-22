@@ -22,6 +22,10 @@ class GrupoEcononomicoController extends Controller
     public function store(Request $request){
         try
         {
+            $request->validate([
+                'nome' => 'required|unique|max:255',
+            ]);
+
             $grupo_economico = new GrupoEconomico;
 
             $grupo_economico->nome = $request->nome;

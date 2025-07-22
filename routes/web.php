@@ -3,7 +3,7 @@
 use App\Http\Controllers\BandeiraController;
 use App\Http\Controllers\ColaboradorController;
 use App\Http\Controllers\GrupoEcononomicoController;
-use App\Http\Controllers\ServicosController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UnidadeController;
 use Illuminate\Support\Facades\Route;
 
@@ -11,7 +11,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/servicos',[ServicosController::class, 'index'])->middleware('auth');
+Route::get('/servicos',function(){
+    return view('dashboard');
+});
 
 Route::get('/grupo_economico', [GrupoEcononomicoController::class, 'index'])->middleware('auth');
 Route::get('/grupo_economico/create', [GrupoEcononomicoController::class, 'create'])->middleware('auth');
@@ -40,6 +42,10 @@ Route::post('/colaborador/store',[ColaboradorController::class, 'store'])->middl
 Route::get('/colaborador/edit/{id}',[ColaboradorController::class, 'edit'])->middleware('auth');
 Route::put('/colaborador/update/{id}',[ColaboradorController::class, 'update'])->middleware('auth');
 Route::put('/colaborador/delete/{id}',[ColaboradorController::class, 'delete'])->middleware('auth');
+
+Route::get('relatorio' , [ReportController::class,'index'] )->name('relatorio');
+
+Route::post('report' , [ReportController::class,'generateReport'] )->name('report');
 
 Route::middleware([
     'auth:sanctum',

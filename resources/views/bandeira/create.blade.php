@@ -23,7 +23,7 @@
                 </select>
             </div>
             <button id="btnSave" type="submit" class="btn btn-primary">Salvar</button>
-            <a href="/" id="btnSave" type="submit" class="btn btn-danger">Voltar</a>
+            <a href="/bandeira" id="btnSave" type="submit" class="btn btn-danger">Voltar</a>
         </form>
     </div>
 @endsection

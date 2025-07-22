@@ -2,6 +2,8 @@
 
 @section('title', 'Gestão Inteligente')
 
+@section('navbar', 'Página Inicial')
+
 @section('content')
 <div id="welcome-container" class="col-md-12">
     <h1>Seja Bem-Vindo ao Gestão Inteligente</h1>

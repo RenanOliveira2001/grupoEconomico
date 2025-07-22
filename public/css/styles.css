@@ -1,114 +1,109 @@
-/*Geral*/
-
-*
-    {
-        font-family:'Roboto';
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
     }
 
-    body
-    {
-        min-height: 100vh;
-        padding-bottom: 100px;
-        position: relative;
+    body {
+      background-color: #f5f6fa;
+      color: #1f2937;
     }
 
-    header
-    {
-        background-color: rgba(0, 128, 0, 0.5);
-        border-bottom: 1px solid #ccc;
+    header {
+      background-color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e5e7eb;
     }
 
-    .row{
-        margin: 0;
-    }
-
-    /* navbar */
-    #navbar img {
-        width: 40px;
+    /* Dashboard */
+    .dashboard-title-container {
+      margin-bottom: 30px;
+      margin-top: 30px;
     }
     
-    #navbar {
-        justify-content: space-between;
-        background-color: rgba(0, 128, 0, 0.5);
-        padding: 5px 0;
+    .dashboard-events-container th {
+      width: 25%;
     }
     
-    #navbar a {
-        font-size: 14px;
-        color: #757575;
-    }
-    
-    #navbar a:hover {
-        color: #F2A340;
+    .dashboard-events-container form {
+      display: inline-block;
     }
 
-    /*welcome container*/
-
-    #welcome-container
-    {
-        /*background-image: url('../img/matriz2.jpeg');*/
-        background-size: cover;
-        background-position: center;
-        height: 400px;
-        padding: 50px;
+    .logo {
+      font-weight: bold;
+      display: flex;
+      align-items: center;
     }
 
-    #welcome-container h1{
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 30px;
+    .logo img {
+      width: 30px;
+      margin-right: 10px;
     }
 
-    #welcome-container h6{
-        align-items: center;
-        justify-content: center;
+    .user {
+      font-size: 0.9rem;
+      color: #6b7280;
     }
 
-    .abas {
-    position: relative;
-    }
-    .aba {
-    display: inline;
-    }
-    .aba > a {
-    float: left;
-    padding: 0.5em 1em;
-    background: linear-gradient(#FFF, #EEE);
-    border-width: 1px;
-    border-style: solid;
-    border-color: #CCC #CCC #FFF;
-    border-top-right-radius: 8px;
-    border-top-left-radius: 8px;
-    }
-    .aba:not(:target) a {
-    border-bottom: 0 none;
-    }
-    .aba:target a, a:hover {
-    background: white;
-    }
-    .conteudo {
-    position: absolute;
-    left: 0;
-    top: calc(2em + 4px); /* altura do link + bordas */
-    z-index: -2;
-    border: 1px solid #CCC;
-    background-color: white;
-    }
-    .aba:target .conteudo {
-    z-index: -1;
+    nav {
+      background-color: white;
+      padding: 0.8rem 2rem;
+      border-bottom: 1px solid #e5e7eb;
     }
 
-    /* footer */
-    footer {
-        text-align: center;
-        background-color: #353E48;
-        color: #FFF;
-        padding: 30px;
-        position: absolute;
-        bottom: 0;
-        width: 100%;
+    nav span {
+      font-weight: 600;
     }
-    
-    footer p {
-        margin-bottom: 0;
+
+    .container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      background-color: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 1rem;
+      background-color: #fff;
+    }
+
+    .card h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      font-size: 0.875rem;
+      color: #6b7280;
+      margin-bottom: 0.5rem;
+    }
+
+    .card a {
+      color: #4f46e5;
+      font-size: 0.875rem;
+      text-decoration: none;
+    }
+
+    .card a:hover {
+      text-decoration: underline;
     }

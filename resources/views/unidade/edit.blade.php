@@ -31,7 +31,7 @@
                 <input type="text" name="cnpj" id="cnpj" class="form-control" required value="{{ $unidade->cnpj }}">
             </div>
             <button id="btnSave" type="submit" class="btn btn-primary">Salvar</button>
-            <a href="/" id="btnSave" type="submit" class="btn btn-danger">Voltar</a>
+            <a href="/unidade" id="btnSave" type="submit" class="btn btn-danger">Voltar</a>
         </form>
     </div>
 @endsection

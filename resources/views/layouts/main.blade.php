@@ -9,6 +9,15 @@
         <!-- Fonte do Google -->
         <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
 
+        <!-- Aplicação do Livewire -->
+        <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        <script defer src="https://unpkg.com/@alpinejs/mask@3.x.x/dist/cdn.min.js"></script>
+        <script>
+            document.addEventListener('alpine:init', () => {
+                Alpine.plugin(window.mask);
+            });
+        </script>
+
         <!-- CSS Bootstrap -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
@@ -20,59 +29,33 @@
     </head>
     <body>
       <header>
-        <nav class="navbar navbar-expand-lg navbar-light">
-          <div class="collapse navbar-collapse" id="navbar">
-            <a href="/" class="navbar-brand">
-              <img src="/img/grpEconomico.jpeg" alt="Grupos Econômicos">
-            </a>
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a href="/" class="nav-link">Página Inicial</a>
-              </li>
-              @auth
-              <li class="nav-item">
-                <form action="/logout" method="POST">
-                  @csrf
-                  <li class="nav-item">
-                    <a href="/dashboard" class="nav-link">Disciplinas Cadastradas</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="/disciplinas/cadastro" class="nav-link">Cadastrar Disciplinas</a>
-                  </li>
-                  <a href="/logout" 
-                    class="nav-link" 
-                    onclick="event.preventDefault();
-                    this.closest('form').submit();">
-                    Sair
-                  </a>
-                </form>
-              </li>
-              @endauth
-              @guest
-              <li class="nav-item">
-                <a href="/login" class="nav-link">Entrar</a>
-              </li>
-              <li class="nav-item">
-                <a href="/register" class="nav-link">Cadastrar</a>
-              </li>
-              @endguest
-            </ul>
-          </div>
-        </nav>
+      <div class="logo">
+        <img src="https://laravel.com/img/logomark.min.svg" alt="Logo">
+        Gestão Inteligente
+      </div>
+        <div class="user">Renan de Castro Oliveira ▼</div>
       </header>
-      <main>
-        <div class="container-fluid">
-          <div class="row">
-            @if(session('msg'))
-              <p class="msg">{{ session('msg') }}</p>
-            @endif
-            @yield('content')
-          </div>
+
+      <nav>
+        @yield('navbar')
+      </nav>
+
+      <div class="container">
+        <div class="grid">
+            <main>
+            <div class="container-fluid">
+              <div class="row">
+                @if(session('msg'))
+                  <p class="msg">{{ session('msg') }}</p>
+                  <p class="error">{{ session('error') }}</p>
+                @endif
+                @yield('content')
+              </div>
+            </div>
+          </main>
         </div>
-      </main>
-      <footer>
-        <p>Renan Oliveira &copy; 2025</p>
-      </footer>
+      </div>
+
       <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
       @livewireScripts
     </body>

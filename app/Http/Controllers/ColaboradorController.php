@@ -7,11 +7,12 @@ use App\Models\Unidade;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class ColaboradorController extends Controller
 {
     public function index(){
-        $colaborador = Colaborador::orderBy('id','asc')->get();
+        $colaboradores = Colaborador::orderBy('id','asc')->get();
 
         $selUnidade = DB::select('SELECT A.NOME_FANTASIA FROM UNIDADES A,
                                     COLABORADORES B
@@ -23,19 +24,26 @@ class ColaboradorController extends Controller
             $unidade = '';
         }
 
-        return view('colaborador.index',['colaborador' => $colaborador,'unidade' => $unidade]);
+        return view('colaborador.index',['colaborador' => $colaboradores,'unidade' => $unidade]);
     }
 
     public function create(){
         $unidade = Unidade::orderBy('id')->get();
 
-        return view('coloborador.create', ['unidade' => $unidade]);
+        return view('colaborador.create', ['unidade' => $unidade]);
     }
 
     public function store(Request $request){
         try {
             $colaborador = new Colaborador;
 
+            $request->validate([
+                'nome' => 'required|max:255',
+                'email' => 'required|unique:colaboradores|max:255',
+                'cpf' => 'required|max:255',
+                'unidade' => 'required'
+            ]);
+        
             $colaborador->nome = $request->nome;
             $colaborador->email = $request->email;
             $colaborador->cpf = $request->cpf;
@@ -55,11 +63,19 @@ class ColaboradorController extends Controller
         $colaborador = Colaborador::findOrFail($id);
         $unidade = Unidade::orderBy('id')->get();
 
-        return view('coloborador.edit',['colaborador' => $colaborador, 'unidade' => $unidade]);
+        return view('colaborador.edit',['colaborador' => $colaborador, 'unidade' => $unidade]);
     }
 
     public function update(Request $request){
         try {
+
+            $request->validate([
+                'nome' => 'required|max:255',
+                'email' => 'required|max:255',
+                'cpf' => 'required|max:255',
+                'unidade' => 'required'
+            ]);
+
             Colaborador::where('id','=',$request->id)
             ->update([
                 'nome' => $request->nome,
@@ -69,7 +85,7 @@ class ColaboradorController extends Controller
                 'ultima_atualizacao' => now()
             ]);
 
-            return redirect()->to('/')->with('msg','Unidade atualizada com sucesso');
+            return redirect()->to('/colaborador')->with('msg','Colaborador atualizado com sucesso');
         } catch(Exception $e){
             return redirect()->back()->with('msg','Erro ao atualizar unidade: '.$e->getMessage());
         }
