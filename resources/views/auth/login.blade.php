@@ -42,6 +42,9 @@
                 <x-button class="ms-4">
                     {{ __('Entrar') }}
                 </x-button>
+                <x-button class="ms-4">
+                    {{ __('Cadastrar') }}
+                </x-button>
             </div>
         </form>
     </x-authentication-card>

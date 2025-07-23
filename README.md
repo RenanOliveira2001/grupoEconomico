@@ -15,7 +15,7 @@ todas as depedências
 
 7 - o método de autenticação utilizar o jetstream, então baixe e instale o NODE.js link: https://nodejs.org/pt
 
-8 - Abra o CMD e acesse a pasta do projeto e utilize o comando npm run dev
+8 - Abra o CMD e acesse a pasta do projeto e utilize o comando npm install para instalar o vite e use npm run dev
 
 9 - Renomeie o arquivo .env.example para .env
 
