@@ -33,7 +33,20 @@
         <img src="https://laravel.com/img/logomark.min.svg" alt="Logo">
         Gestão Inteligente
       </div>
-        <div class="user">Renan de Castro Oliveira ▼</div>
+        @auth
+          <div class="user">{{ Auth()->user()->name }}
+            <a href="/logout" 
+                    class="nav-link" 
+                    onclick="event.preventDefault();
+                    this.closest('form').submit();">
+                    Sair
+          </a>
+          </div>
+        @endauth
+        @guest
+          <div class="user"><a href="/login">Entrar</a>
+          <a href="/register">Cadastrar</a></div>
+        @endguest
       </header>
 
       <nav>

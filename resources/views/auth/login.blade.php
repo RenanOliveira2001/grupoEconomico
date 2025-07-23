@@ -43,7 +43,7 @@
                     {{ __('Entrar') }}
                 </x-button>
                 <x-button class="ms-4">
-                    {{ __('Cadastrar') }}
+                    <a href="/register">{{ __('Cadastrar') }}</a>
                 </x-button>
             </div>
         </form>
