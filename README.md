@@ -26,3 +26,5 @@ todas as depedências
 12 - Utilize o comando php artisan migrate:fresh para criar as tabelas no banco
 
 13 - No terminal rode o comando php artisan serve e utilize a aplicação Link: http://127.0.0.1:8000/
+
+14- Para geração de relatorio, instalar o java link: https://www.java.com/pt-BR/download/
