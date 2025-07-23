@@ -21,6 +21,8 @@ todas as depedências
 
 10 - Acesse PHPMyAdmin do MySQL crie um novo banco de dados chamado grupoecon
 
-11 - Utilize o comando php artisan migrate:fresh para criar as tabelas no banco
+11 - Abra o terminal do VSCode
 
-11 - No terminal rode o comando php artisan serve e utilize a aplicação Link: http://127.0.0.1:8000/
+12 - Utilize o comando php artisan migrate:fresh para criar as tabelas no banco
+
+13 - No terminal rode o comando php artisan serve e utilize a aplicação Link: http://127.0.0.1:8000/

@@ -3,9 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
+use OwenIt\Auditing\Auditable;
 
-class Unidade extends Model
+class Unidade extends Model implements AuditableContract
 {
+    use Auditable;
+
     protected $table = 'unidades';
 
     protected $fillable = ['nome_fantasia','razao_social','cnpj','unidade','dt_criacao','ultima_atualizacao'];
